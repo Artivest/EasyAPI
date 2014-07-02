@@ -145,13 +145,14 @@ class EasyAPI(object):
 class BasicAuthentication(object):
     _user = None
     _password = None
+    _log = False
 
     def __init__(self, username=None, password=None, base_url='v2', ca_certs=None, log=False):
         self._user = username
         self._password = password
         self._base_url = base_url
-        self.ca_certs = ca_certs
-        self.log = log
+        self._ca_certs = ca_certs
+        self._log = log
 
     def _make_request(self, action, method, body=None):
         http = httplib2.Http(ca_certs='/etc/ssl/certs/ca-certificates.crt')
@@ -166,7 +167,7 @@ class BasicAuthentication(object):
         url = "%s/%s" % (self._base_url, action)
         url = "%s/" % url if url[-1] != '/' else url
 
-        if self.log:
+        if self._log:
             import logging
             logger = logging.getLogger(__name__)
             logger.debug('url: %s' % url)
@@ -175,7 +176,7 @@ class BasicAuthentication(object):
 
         response, content = http.request(url, method=method, body=body, headers=headers)
 
-        if self.log:
+        if self._log:
             logger.debug('response: %s' % response)
             logger.debug('content: %s' % content)
 
