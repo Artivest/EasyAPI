@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='EasyAPI',
-    version='0.1.3',
+    version='0.1.4',
     author='Adrian Czebiniak',
     author_email='adrian@artivest.co',
     packages=['easy_api', 'easy_api.test'],
