@@ -194,4 +194,4 @@ class BasicAuthentication(object):
         if status == '200':
             return json.loads(content)
 
-        raise RuntimeError
+        raise RuntimeError(content)
