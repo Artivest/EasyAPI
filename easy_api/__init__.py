@@ -184,9 +184,9 @@ class BasicAuthentication(object):
 
         # Error statuses
         if status == '404':
-            raise KeyError
+            raise KeyError(content)
         if status == '500':
-            raise RuntimeError
+            raise RuntimeError(content)
 
         # OK statuses
         if status == '204':
